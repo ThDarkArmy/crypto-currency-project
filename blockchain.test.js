@@ -23,11 +23,6 @@ describe('Blockchain', ()=>{
 
     it('validates a valid chain', ()=>{
         bc2.addBlock('foo');
-        // console.log(JSON.stringify(bc2.chain[0]))
-        // console.log(JSON.stringify(Block.genesis()))
-        // console.log(bc2.chain[0].hash)
-        // console.log(Block.blockHash(bc2.chain[0]))
-
         expect(bc.isValidChain(bc2.chain)).toBe(true);
     });
 
@@ -42,5 +37,18 @@ describe('Blockchain', ()=>{
         bc2.chain[1].data = 'Not foo';
 
         expect(bc.isValidChain(bc2.chain)).toBe(false);
+    });
+
+    it('replace the chain with a valid chain', ()=>{
+        bc2.addBlock('goo');
+        bc.replaceChain(bc2.chain);
+        expect(bc.chain).toEqual(bc2.chain);
+    });
+
+    it('dose not replace the chain with one of les than or equal to length', ()=>{
+        bc.addBlock('foo');
+        bc.replaceChain(bc2.chain);
+
+        expect(bc.chain).not.toEqual(bc2.chain);
     })
 })
