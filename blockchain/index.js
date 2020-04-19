@@ -19,13 +19,22 @@ class Blockchain{
             const block = chain[i];
             const lastBlock = chain[i-1];
 
-            if(block.lastHash !== lastBlock.hash|| JSON.stringify(block.hash) !== JSON.stringify(Block.blockHash(block))){
+            if(JSON.stringify(block.lastHash) !== JSON.stringify(lastBlock.hash)){
+                console.log("block.lastHash not equals lastBlock.hash: "+i)
+                // console.log(block.lastHash);
+                // console.log(lastBlock.hash);
                 return false;
-            }     
+            }   
+            
+            if(JSON.stringify(block.hash) !== JSON.stringify(Block.blockHash(block))){
+                console.log("block.hash not equals Block.blockkHash: "+i);
+                // console.log(block.hash);
+                // console.log(Block.blockHash(block));
+                return false;
+            }
         }
 
         return true;
-
     }
 
     replaceChain(newChain){
@@ -38,7 +47,6 @@ class Blockchain{
         }
 
         console.log("chain is replaced with new chain!")
-
         this.chain = newChain;
     }
 }

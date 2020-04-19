@@ -17,7 +17,7 @@ class Block{
     }
 
     static genesis(){
-        return new this('Genesis Time', '-----', 'f1r57-h45h', [])
+        return new this('Genesis Time', '-----', 'f1r57-h45h', "DarkArmy")
     }
 
     static mineBlock(lastBlock, data){
@@ -28,11 +28,14 @@ class Block{
     }
 
     static hash(timestamp, lastHash, data){
-        return SHA256(`${timestamp}${lastHash}${data}`)
+        //console.log(SHA256(`${timestamp}${lastHash}${data}`));
+        const lasthash = JSON.stringify(lastHash);
+        return SHA256(`${timestamp}${lasthash}${data}`)
     }
 
     static blockHash(block){
         const { timestamp, lastHash, data} = block;
+        //console.log(Block.hash(timestamp, lastHash, data));
         return Block.hash(timestamp, lastHash, data);
     }
 
