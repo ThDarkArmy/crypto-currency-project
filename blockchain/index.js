@@ -21,19 +21,13 @@ class Blockchain{
 
             if(JSON.stringify(block.lastHash) !== JSON.stringify(lastBlock.hash)){
                 console.log("block.lastHash not equals lastBlock.hash: "+i)
-                // console.log(block.lastHash);
-                // console.log(lastBlock.hash);
                 return false;
             }   
-            
             if(JSON.stringify(block.hash) !== JSON.stringify(Block.blockHash(block))){
                 console.log("block.hash not equals Block.blockkHash: "+i);
-                // console.log(block.hash);
-                // console.log(Block.blockHash(block));
                 return false;
             }
         }
-
         return true;
     }
 
@@ -45,7 +39,6 @@ class Blockchain{
             console.log("new chain is not valid chain")
             return;
         }
-
         console.log("chain is replaced with new chain!")
         this.chain = newChain;
     }

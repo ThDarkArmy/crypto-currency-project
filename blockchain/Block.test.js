@@ -21,7 +21,6 @@ describe('Block', ()=>{
 
     it('generates a hash that matches the difficulty', ()=>{
         expect(block.hash.substring(0, block.difficulty)).toEqual('0'.repeat(block.difficulty));
-        //console.log(block.toString());
     });
 
     it("Lowers the difficulty of slowly mined blocks", ()=>{
